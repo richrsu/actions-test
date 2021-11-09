@@ -1,0 +1,24 @@
+<phpunit
+	bootstrap="./phpunit-config.php"
+	cacheResultFile=".phpunit.cache/test-results"
+	forceCoversAnnotation="false"
+	beStrictAboutCoversAnnotation="false"
+	backupGlobals="false"
+	backupStaticAttributes="false"
+	stopOnError="false"
+	stopOnFailure="false"
+	stopOnIncomplete="false"
+	stopOnSkipped="false"
+	colors="true"
+	verbose="false"
+>
+	<php>
+		<includePath>../www</includePath>
+		<ini name="memory_limit" value="512M" />
+	</php>
+	<testsuites>
+		<testsuite name="All_Tests">
+			<directory suffix="Test.class.php">./phpunit</directory>
+		</testsuite>
+	</testsuites>
+</phpunit>
