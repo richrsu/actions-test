@@ -30,8 +30,8 @@ class Autoload
 			// Map the ActionsExample namespace to the code folder
 			$classname = str_replace('ActionsExample\\', '', $classname);
 			$filename = __DIR__ . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $classname) . '.class.php';
-			var_dump($filename);
 
+			// Load file if it exists
 			if (file_exists($filename))
 			{
 				require_once($filename);
