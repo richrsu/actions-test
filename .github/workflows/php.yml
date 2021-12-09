@@ -33,7 +33,10 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
-    
+
+    - name: Directory check
+      run: ls -al
+
     - name: Run tests
       run: phpunit-run-all-tests.sh
 
