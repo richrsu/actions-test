@@ -39,3 +39,12 @@ jobs:
 
     # - name: Run test suite
     #   run: composer run-script test
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    defaults: 
+      run: 
+        working-directory: tests
+    steps:
+      - run: ./phpunit-run-all-tests.sh
