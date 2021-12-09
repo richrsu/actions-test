@@ -1,5 +1,5 @@
 {
-    "name": "phptests",
+    "name": "rsu/phptests",
     "description": "Awesome PHP testing",
     "license": "proprietary",
     "require": {
