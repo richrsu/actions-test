@@ -11,12 +11,16 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    defaults: 
+      run: 
+        working-directory: tests
+
+
     steps:
     - uses: actions/checkout@v2
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
-      working-directory: tests
 
     - name: Cache Composer packages
       id: composer-cache
@@ -29,7 +33,6 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
-      working-directory: tests
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
