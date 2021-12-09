@@ -1,5 +1,5 @@
 {
-    "name": "PHP Tests",
+    "name": "phptests",
     "description": "Awesome PHP testing",
     "license": "proprietary",
     "require": {
