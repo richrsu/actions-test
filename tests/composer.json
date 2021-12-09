@@ -1,4 +1,7 @@
 {
+    "name": "PHP Tests",
+    "description": "Awesome PHP testing",
+    "license": "proprietary",
     "require": {
         "phpunit/phpunit": "^9.5"
     }
