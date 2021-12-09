@@ -33,6 +33,9 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+    
+    - name: Run tests
+      run: phpunit-run-all-tests.sh
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
@@ -40,11 +43,11 @@ jobs:
     # - name: Run test suite
     #   run: composer run-script test
 
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    defaults: 
-      run: 
-        working-directory: tests
-    steps:
-      - run: phpunit-run-all-tests.sh
+  # test:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   defaults: 
+  #     run: 
+  #       working-directory: tests
+  #   steps:
+  #     - run: phpunit-run-all-tests.sh
