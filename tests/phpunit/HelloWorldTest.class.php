@@ -20,4 +20,23 @@ class HelloWorldTest extends TestCase
 		$obj = new HelloWorld();
 		self::assertEquals('Hello, World!', $obj->getHelloWorld());
 	}
+
+	/**
+	 * Test the getHelloWorld function again
+	 */
+	public function testGetHelloWorld2(): void
+	{
+		$obj = new HelloWorld();
+		self::assertEquals('Hello, World!', $obj->getHelloWorld());
+	}
+
+	/**
+	 * Test the getHelloWorld function again again
+	 */
+	public function testGetHelloWorld3(): void
+	{
+		$obj = new HelloWorld();
+		self::assertEquals('Hello, World!', $obj->getHelloWorld());
+		self::assertEquals('Hello, World!', $obj->getHelloWorld());
+	}
 }
