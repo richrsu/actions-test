@@ -1,2 +1,4 @@
+tests/build/test-output.xml
+tests/build/test-summary.json
 tests/.phpunit.cache
 tests/vendor

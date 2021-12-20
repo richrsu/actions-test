@@ -7,6 +7,12 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  # Only set for pull request events. The name of the head (feature) branch.
+  DEBUG_GITHUB_HEAD_REF: ${{ github.head_ref }}
+  # The branch or tag name that triggered the workflow run. Use for manual workflow runs.
+  DEBUG_GITHUB_REFNAME: ${{ github.ref_name }}
+
 jobs:
   build:
 
@@ -33,6 +39,12 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+
+    - name: Get current branch name
+      run: |
+        # Short name for current branch. For PRs, use feature branch (head ref)
+        GIT_BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
 
     - name: Run tests
       run: ./build/phpunit-run-all-tests-for-build.sh
@@ -63,9 +75,9 @@ jobs:
       with:
         auth: ${{ secrets.GIST_TOKEN }}
         gistID: fc3b4e6e926771e0a5934a801f867e23
-        filename: ${{ github.ref_name }}-build-time.json
+        filename: ${{ env.GIT_BRANCH }}-build-time.json
         label: Build time
-        message: ${{ secrets.GIST_TOKEN }}
+        message: ${{ env.BUILD_DATE }}
         color: blue
         style: plastic
         cacheSeconds: 305
@@ -76,9 +88,9 @@ jobs:
       with:
         auth: ${{ secrets.GIST_TOKEN }}
         gistID: fc3b4e6e926771e0a5934a801f867e23
-        filename: ${{ github.ref_name }}-sha.json
+        filename: ${{ env.GIT_BRANCH }}-sha.json
         label: SHA
-        message: ${{ env.GITHUB_SHA_SHORT }}
+        message: ${{ env.BUILD_DATE }}
         color: blue
         style: plastic
         cacheSeconds: 305
@@ -89,7 +101,7 @@ jobs:
       with:
         auth: ${{ secrets.GIST_TOKEN }}
         gistID: fc3b4e6e926771e0a5934a801f867e23
-        filename: ${{ github.ref_name }}-tests.json
+        filename: ${{ env.GIT_BRANCH }}-tests.json
         label: Tests
         message: ${{fromJson(steps.test_results.outputs.summaryJson).tests}} run, ${{fromJson(steps.test_results.outputs.summaryJson).passed}} passed, ${{fromJson(steps.test_results.outputs.summaryJson).notPassed}} failed, ${{fromJson(steps.test_results.outputs.summaryJson).assertions}} assertions
         color: ${{fromJson(steps.test_results.outputs.summaryJson).messageBackground}}
