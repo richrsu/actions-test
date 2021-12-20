@@ -65,7 +65,7 @@ jobs:
         gistID: 4b164d9347a6c3949e01829e581f7296
         filename: ${{ github.ref_name }}-build-time.json
         label: Build time
-        message: ${{ env.BUILD_DATE }}
+        message: ${{ secrets.GIST_TOKEN }}
         color: blue
         style: plastic
         cacheSeconds: 305
