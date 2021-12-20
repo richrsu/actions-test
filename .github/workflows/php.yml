@@ -7,10 +7,6 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
-  GHREF: ${{ github.ref }}
-  GHREFNAME: ${{ github.ref_name }}
-
 jobs:
   build:
 
@@ -67,7 +63,7 @@ jobs:
       with:
         auth: ${{ secrets.GIST_TOKEN }}
         gistID: fc3b4e6e926771e0a5934a801f867e23
-        filename: main-build-time.json
+        filename: ${{ github.ref_name }}-build-time.json
         label: Build time
         message: ${{ secrets.GIST_TOKEN }}
         color: blue
@@ -80,7 +76,7 @@ jobs:
       with:
         auth: ${{ secrets.GIST_TOKEN }}
         gistID: fc3b4e6e926771e0a5934a801f867e23
-        filename: ${{ github.ref }}-sha.json
+        filename: ${{ github.ref_name }}-sha.json
         label: SHA
         message: ${{ env.GITHUB_SHA_SHORT }}
         color: blue
@@ -93,7 +89,7 @@ jobs:
       with:
         auth: ${{ secrets.GIST_TOKEN }}
         gistID: fc3b4e6e926771e0a5934a801f867e23
-        filename: ${{ github.ref }}-tests.json
+        filename: ${{ github.ref_name }}-tests.json
         label: Tests
         message: ${{fromJson(steps.test_results.outputs.summaryJson).tests}} run, ${{fromJson(steps.test_results.outputs.summaryJson).passed}} passed, ${{fromJson(steps.test_results.outputs.summaryJson).notPassed}} failed, ${{fromJson(steps.test_results.outputs.summaryJson).assertions}} assertions
         color: ${{fromJson(steps.test_results.outputs.summaryJson).messageBackground}}
