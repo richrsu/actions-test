@@ -69,7 +69,7 @@ jobs:
         gistID: fc3b4e6e926771e0a5934a801f867e23
         filename: main-build-time.json
         label: Build time
-        message: ${{ secrets.GIST_TOKEN }}
+        message: ${{ env.BUILD_DATE }}
         color: blue
         style: plastic
         cacheSeconds: 305
@@ -80,9 +80,9 @@ jobs:
       with:
         auth: ${{ secrets.GIST_TOKEN }}
         gistID: fc3b4e6e926771e0a5934a801f867e23
-        filename: ${{ github.ref }}-sha.json
+        filename: ${{ env.GITHUB_REF }}-sha.json
         label: SHA
-        message: ${{ env.GITHUB_SHA_SHORT }}
+        message: ${{ env.BUILD_DATE }}
         color: blue
         style: plastic
         cacheSeconds: 305
