@@ -8,8 +8,12 @@ on:
     branches: [ main ]
 
 env:
-  BRANCH_NAME: richBadgeTest
-  BRANCH_NAME_HEAD_REF: ${{ github.head_ref }}
+  # Only set for pull request events. The name of the head (feature) branch.
+  GITHUB_HEAD_REF: ${{ github.head_ref }}
+  # The branch or tag name that triggered the workflow run. Use for manual workflow runs.
+  GITHUB_REFNAME: ${{ github.ref_name }}
+  # Only set for ____ workflow runs.
+  GITHUB_REF: ${{ github.ref }}
 
 jobs:
   build:
