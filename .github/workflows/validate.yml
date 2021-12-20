@@ -3,14 +3,9 @@ name: Validate build
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
-      - richBadgeTest
+    branches: [ main ]
   pull_request:
     branches: [ main ]
-
-env:
-  TEST: ${{ github.ref }}
 
 jobs:
   build:
@@ -20,7 +15,6 @@ jobs:
     defaults: 
       run: 
         working-directory: tests
-
 
     steps:
     - uses: actions/checkout@v2
