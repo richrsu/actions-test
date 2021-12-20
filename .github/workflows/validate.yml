@@ -62,7 +62,7 @@ jobs:
       uses: schneegans/dynamic-badges-action@v1.1.0
       with:
         auth: ${{ secrets.GIST_TOKEN }}
-        gistID: 4b164d9347a6c3949e01829e581f7296
+        gistID: fc3b4e6e926771e0a5934a801f867e23
         filename: ${{ github.ref_name }}-build-time.json
         label: Build time
         message: ${{ secrets.GIST_TOKEN }}
@@ -75,7 +75,7 @@ jobs:
       uses: schneegans/dynamic-badges-action@v1.1.0
       with:
         auth: ${{ secrets.GIST_TOKEN }}
-        gistID: 4b164d9347a6c3949e01829e581f7296
+        gistID: fc3b4e6e926771e0a5934a801f867e23
         filename: ${{ github.ref_name }}-sha.json
         label: SHA
         message: ${{ env.GITHUB_SHA_SHORT }}
@@ -88,7 +88,7 @@ jobs:
       uses: schneegans/dynamic-badges-action@v1.1.0
       with:
         auth: ${{ secrets.GIST_TOKEN }}
-        gistID: 4b164d9347a6c3949e01829e581f7296
+        gistID: fc3b4e6e926771e0a5934a801f867e23
         filename: ${{ github.ref_name }}-tests.json
         label: Tests
         message: ${{fromJson(steps.test_results.outputs.summaryJson).tests}} run, ${{fromJson(steps.test_results.outputs.summaryJson).passed}} passed, ${{fromJson(steps.test_results.outputs.summaryJson).notPassed}} failed, ${{fromJson(steps.test_results.outputs.summaryJson).assertions}} assertions
