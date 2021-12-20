@@ -41,10 +41,10 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Get current branch name
-        run: |
-          # Short name for current branch. For PRs, use feature branch (head ref)
-          GIT_BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-          echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
+      run: |
+        # Short name for current branch. For PRs, use feature branch (head ref)
+        GIT_BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
 
     - name: Run tests
       run: ./build/phpunit-run-all-tests-for-build.sh
