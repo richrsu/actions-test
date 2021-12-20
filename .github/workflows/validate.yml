@@ -90,7 +90,7 @@ jobs:
         gistID: fee66470e7142b54611a917aff02324c
         filename: ${{ env.GIT_BRANCH }}-sha.json
         label: SHA
-        message: ${{ env.BUILD_DATE }}
+        message: ${{ env.GITHUB_SHA_SHORT }}
         color: blue
         style: plastic
         cacheSeconds: 305
