@@ -9,6 +9,7 @@ on:
 
 env:
   BRANCH_NAME: richBadgeTest
+  BRANCH_NAME_HEAD_REF: ${{ github.head_ref }}
 
 jobs:
   build:
