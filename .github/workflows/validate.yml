@@ -8,8 +8,7 @@ on:
     branches: [ main ]
 
 env:
-  GHREF: ${{ github.ref }}
-  GHREFNAME: ${{ github.ref_name }}
+  BRANCH_NAME: richBadgeTest
 
 jobs:
   build:
@@ -37,6 +36,10 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+
+    - name: Get current branch name
+      run: |
+          git rev-parse --abbrev-ref HEAD >> $GITHUB_BRANCH_NAME
 
     - name: Run tests
       run: ./build/phpunit-run-all-tests-for-build.sh
@@ -67,7 +70,7 @@ jobs:
       with:
         auth: ${{ secrets.GIST_TOKEN }}
         gistID: fc3b4e6e926771e0a5934a801f867e23
-        filename: main-build-time.json
+        filename: ${{ env.BRANCH_NAME }}-build-time.json
         label: Build time
         message: ${{ env.BUILD_DATE }}
         color: blue
@@ -80,7 +83,7 @@ jobs:
       with:
         auth: ${{ secrets.GIST_TOKEN }}
         gistID: fc3b4e6e926771e0a5934a801f867e23
-        filename: ${{ env.GITHUB_REF }}-sha.json
+        filename: ${{ env.GITHUB_BRANCH_NAME }}-sha.json
         label: SHA
         message: ${{ env.BUILD_DATE }}
         color: blue
@@ -93,7 +96,7 @@ jobs:
       with:
         auth: ${{ secrets.GIST_TOKEN }}
         gistID: fc3b4e6e926771e0a5934a801f867e23
-        filename: ${{ github.ref }}-tests.json
+        filename: ${{ env.BRANCH_NAME }}-tests.json
         label: Tests
         message: ${{fromJson(steps.test_results.outputs.summaryJson).tests}} run, ${{fromJson(steps.test_results.outputs.summaryJson).passed}} passed, ${{fromJson(steps.test_results.outputs.summaryJson).notPassed}} failed, ${{fromJson(steps.test_results.outputs.summaryJson).assertions}} assertions
         color: ${{fromJson(steps.test_results.outputs.summaryJson).messageBackground}}
